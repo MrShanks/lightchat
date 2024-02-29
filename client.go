@@ -14,6 +14,7 @@ type Client struct {
 	send chan []byte
 }
 
+// reader waits for messages to be send to the web socket and sends the message to the broadcast chan
 func (c *Client) reader() {
 	defer func() {
 		c.conn.Close()
@@ -31,6 +32,7 @@ func (c *Client) reader() {
 	}
 }
 
+// writer listens for messages sent from the hub and writes them back in the websocket
 func (c *Client) writer() {
 	defer c.conn.Close()
 

@@ -12,6 +12,7 @@ func newHub() *Hub {
 	}
 }
 
+// run loops trough the broadcast chan and sends the message to all the hub subs
 func (h *Hub) run() {
 	for message := range h.broadcast {
 		for client := range h.clients {
